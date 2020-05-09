@@ -30,8 +30,25 @@ export class EventEmitter {
     if (!listenerSet) {
       return;
     }
-    listenerSet.forEach(listener => {
+    listenerSet.forEach((listener) => {
       listener.call(this);
-    })
+    });
+  }
+
+  /**
+   * 指定したイベントのイベントリスナーを解除
+   * @param {string} type イベント名
+   * @param {Function} listener イベントリスナー
+   */
+  removeEventListener(type, listener) {
+    const listenerSet = this._listeners.get(type);
+    if (!listenerSet) {
+      return;
+    }
+    listenerSet.forEach((ownListener) => {
+      if (ownListener === listener) {
+        listenerSet.delete(listener);
+      }
+    });
   }
 }
