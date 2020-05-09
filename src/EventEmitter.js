@@ -17,7 +17,7 @@ export class EventEmitter {
       this._listeners.set(type, new Set());
     }
     const listenerSet = this._listeners.get(type);
-    listener.add(listener);
+    listenerSet.add(listener);
   }
 
   /**
