@@ -23,8 +23,8 @@ export class App {
       const todoItems = this.todoListModel.getTodoItems();
       todoItems.forEach((item) => {
         const todoItemElement = item.completed
-          ? element`<li><input type="checkbox" class="checkbox"><s>${item.title}</s></li>`
-          : element`<li><input type="checkbox" class="checkbox">${item.title}</li>`;
+          ? element`<li><input type="checkbox" class="checkbox"><s>${item.title}</s></input></li>`
+          : element`<li><input type="checkbox" class="checkbox">${item.title}</input></li>`;
         const inputCheckboxElement = todoItemElement.querySelector(".checkbox");
         inputCheckboxElement.addEventListener("change", () => {
           this.todoListModel.updateTodo({
