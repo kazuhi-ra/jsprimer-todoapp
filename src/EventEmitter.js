@@ -19,4 +19,19 @@ export class EventEmitter {
     const listenerSet = this._listeners.get(type);
     listener.add(listener);
   }
+
+  /**
+   * 指定したイベントをディスパッチ
+   * @param {string} type イベント名
+   */
+
+  emit(type) {
+    const listenerSet = this._listeners.get(type);
+    if (!listenerSet) {
+      return;
+    }
+    listenerSet.forEach(listener => {
+      listener.call(this);
+    })
+  }
 }
