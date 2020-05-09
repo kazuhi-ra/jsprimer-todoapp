@@ -45,4 +45,22 @@ export class TodoListModel extends EventEmitter {
     this.items.push(todoItem);
     this.emitChange();
   }
+
+  /**
+   * 
+   * @param {{ id: number, completed: boolean }}
+   */
+  updateTodo({ id, completed }) {
+    const todoItem = this.items.find((todo) => id === todo.id);
+    if (!todoItem) {
+      return;
+    }
+    todoItem.completed = completed;
+    this.emitChange();
+  }
+
+  deleteTodo({ id }) {
+    this.items = this.items.filter(todo => id !== todo.id);
+    this.emitChange();
+  }
 }
